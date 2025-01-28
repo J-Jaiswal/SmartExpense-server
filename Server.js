@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
-import expenseRoutes from "./routes/expense.js";
-import userRoutes from "./routes/user.js";
+import expenseRoutes from "./routes/Expense.route.js";
+// import userRoutes from "./routes/user.js";
 
 // Initialize App
 dotenv.config();
@@ -14,9 +14,13 @@ connectDB(); // Connect to MongoDB
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send({ message: "Server is running!!" });
+});
+
 // Routes
-app.use("/api/expenses", expenseRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/expense", expenseRoutes);
+// app.use("/api/users", userRoutes);
 
 // Listen on Port
 const PORT = process.env.PORT || 5000;
