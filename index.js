@@ -14,6 +14,10 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+// Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 // Root Route
 app.get("/", (req, res) => {
   res.send({ message: "Server is running!!" });
@@ -22,9 +26,5 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", authMiddleware, userRoutes);
 app.use("/api/expense", authMiddleware, expenseRoutes);
-
-// Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 export default app;
