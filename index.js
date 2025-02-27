@@ -11,7 +11,17 @@ dotenv.config();
 const app = express();
 connectDB();
 // Middleware
-app.use(cors());
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://smart-expense-client.vercel.app", // Allow frontend
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
+
 app.use(express.json());
 
 // Start Server
